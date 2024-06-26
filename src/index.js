@@ -9,17 +9,17 @@ const dockerHub = "https://registry-1.docker.io";
 
 const routes = {
   // production
-  "docker.tabqin.com": dockerHub,
-  "quay.tabqin.com": "https://quay.io",
-  "gcr.tabqin.com": "https://gcr.io",
-  "k8s-gcr.tabqin.com": "https://k8s.gcr.io",
-  "k8s.tabqin.com": "https://registry.k8s.io",
-  "ghcr.tabqin.com": "https://ghcr.io",
-  "cloudsmith.tabqin.com": "https://docker.cloudsmith.io",
-  "ecr.tabqin.com": "https://public.ecr.aws",
+  "docker.qinyang93.com": dockerHub,
+  "quay.qinyang93.com": "https://quay.io",
+  "gcr.qinyang93.com": "https://gcr.io",
+  "k8s-gcr.qinyang93.com": "https://k8s.gcr.io",
+  "k8s.qinyang93.com": "https://registry.k8s.io",
+  "ghcr.qinyang93.com": "https://ghcr.io",
+  "cloudsmith.qinyang93.com": "https://docker.cloudsmith.io",
+  "ecr.qinyang93.com": "https://public.ecr.aws",
 
   // staging
-  "docker-staging.tabqin.com": dockerHub,
+  "docker-staging.qinyang93.com": dockerHub,
 };
 
 function routeByHosts(host) {
