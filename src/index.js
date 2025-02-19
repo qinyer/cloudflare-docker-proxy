@@ -1,5 +1,3 @@
-import DOCS from './help.html'
-
 addEventListener("fetch", (event) => {
   event.passThroughOnException();
   event.respondWith(handleRequest(event.request));
@@ -9,17 +7,17 @@ const dockerHub = "https://registry-1.docker.io";
 
 const routes = {
   // production
-  "docker.qinyang93.com": dockerHub,
-  "quay.qinyang93.com": "https://quay.io",
-  "gcr.qinyang93.com": "https://gcr.io",
-  "k8s-gcr.qinyang93.com": "https://k8s.gcr.io",
-  "k8s.qinyang93.com": "https://registry.k8s.io",
-  "ghcr.qinyang93.com": "https://ghcr.io",
-  "cloudsmith.qinyang93.com": "https://docker.cloudsmith.io",
-  "ecr.qinyang93.com": "https://public.ecr.aws",
+  ["docker." + CUSTOM_DOMAIN]: dockerHub,
+  ["quay." + CUSTOM_DOMAIN]: "https://quay.io",
+  ["gcr." + CUSTOM_DOMAIN]: "https://gcr.io",
+  ["k8s-gcr." + CUSTOM_DOMAIN]: "https://k8s.gcr.io",
+  ["k8s." + CUSTOM_DOMAIN]: "https://registry.k8s.io",
+  ["ghcr." + CUSTOM_DOMAIN]: "https://ghcr.io",
+  ["cloudsmith." + CUSTOM_DOMAIN]: "https://docker.cloudsmith.io",
+  ["ecr." + CUSTOM_DOMAIN]: "https://public.ecr.aws",
 
   // staging
-  "docker-staging.qinyang93.com": dockerHub,
+  ["docker-staging." + CUSTOM_DOMAIN]: dockerHub,
 };
 
 function routeByHosts(host) {
@@ -35,15 +33,6 @@ function routeByHosts(host) {
 async function handleRequest(request) {
   const url = new URL(request.url);
   const upstream = routeByHosts(url.hostname);
-  // return docs
-  if (url.pathname === "/") {
-    return new Response(DOCS, {
-      status: 200,
-      headers: {
-        "content-type": "text/html"
-      }
-    });
-  }
   if (upstream === "") {
     return new Response(
       JSON.stringify({
